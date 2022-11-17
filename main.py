@@ -16,17 +16,15 @@ def multiply(x, y):
 def divide(x, y):
     if y != 0:
         print(x, " / ", y, " = ", (x / y))
-        return True;
-    print("Divisor não pode ser zero.")
-    return False;
+    else:
+        print("Divisor não pode ser zero.")
 
 
 def sqr_root(x):
     if x >= 0:
         print("Raiz quadrada de ", x, " = ", math.sqrt(x))
-        return True;
-    print("Impossível de realizar uma raiz quadrada de um número negativo.")
-    return False;
+    else:
+        print("Impossível de realizar uma raiz quadrada de um número negativo.")
 
 
 def percentage(part, full):
@@ -48,35 +46,40 @@ while True:
     if userChoice.isnumeric():
         userChoice = int(userChoice)
         if userChoice == 6:
-            x = float(input("Introduza o primeiro número - "))
-            sqr_root(x)
+            while True:
+                input_x = input("Introduza o primeiro número - ").strip()
+                if input_x.isnumeric():
+                    input_x = float(input_x)
+                    sqr_root(input_x)
+                    break
+                print("Valor inválido. Re-introduza o valor.")
         elif 5 >= userChoice >= 0:
             while True:
-                x = input("Introduza o primeiro número - ")
-                y = input("Introduza o segundo número - ")
-                if x.isnumeric() and y.isnumeric():
-                    x = float(x)
-                    y = float(y)
-                    break;
+                input_x = input("Introduza o primeiro número - ").strip()
+                input_y = input("Introduza o segundo número - ").strip()
+                if input_x.isnumeric() and input_y.isnumeric():
+                    input_x = float(input_x)
+                    input_y = float(input_y)
+                    break
                 print("Valores inválidos. Re-introduza os valores.")
 
             match userChoice:
                 case 1:
-                    add(x, y)
+                    add(input_x, input_y)
                 case 2:
-                    subtract(x, y)
+                    subtract(input_x, input_y)
                 case 3:
-                    multiply(x, y)
+                    multiply(input_x, input_y)
                 case 4:
-                    divide(x, y)
+                    divide(input_x, input_y)
                 case 5:
-                    percentage(x, y)
+                    percentage(input_x, input_y)
 
         else:
             print("Opção inválida")
 
         repeat = input("Deseja realizar outra operação? \n 1 - Sim \n 2 - Não \n")
-        if input == 2:
+        if repeat == "2":
             break
     else:
         print("Escolha inválida")
